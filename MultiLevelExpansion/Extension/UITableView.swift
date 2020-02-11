@@ -2,8 +2,22 @@
 //  UITableView.swift
 //  MultiLevelExpansion
 //
-//  Created by Hubilo Softech  Private Limited on 11/02/20.
+//  Created by Pratik Jamariya on 11/02/20.
 //  Copyright © 2020 Pratik. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+extension UITableView {
+
+    func update(completion block:(()->Swift.Void)?) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            block?()
+        }
+        self.beginUpdates()
+        self.endUpdates()
+        CATransaction.commit()
+    }
+    
+}
